@@ -1,5 +1,5 @@
 import {Todos} from "../../../domain/todo/Todos";
-import {TodosList} from "../molecules/TodosList";
+import {TodosList} from "../organisms/TodosList";
 import {TextInput} from "../atoms/TextInput";
 import {Button} from "../atoms/Button";
 import React from "react";

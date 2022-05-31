@@ -1,7 +1,7 @@
 import {Todos} from "../../../domain/todo/Todos";
 import {Todo} from "../../../domain/todo/Todo";
 import React from "react";
-import {TodoItem} from "./TodoItem/TodoItem";
+import {TodoItem} from "../molecules/TodoItem/TodoItem";
 
 export const TodosList = ({todos, updateTodos}: { todos: Todos, updateTodos: (todos: Todos) => void }) => {
 
