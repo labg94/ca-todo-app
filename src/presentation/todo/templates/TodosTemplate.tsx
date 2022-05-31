@@ -1,4 +1,4 @@
-import {Todos} from "../../../../domain/todo/Todos";
+import {Todos} from "../../../domain/todo/Todos";
 import {TodosList} from "../molecules/TodosList";
 import {TextInput} from "../atoms/TextInput";
 import {Button} from "../atoms/Button";

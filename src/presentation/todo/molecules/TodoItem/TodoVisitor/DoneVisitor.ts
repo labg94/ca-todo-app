@@ -1,4 +1,4 @@
-import {Todo} from "../../../../../../domain/todo/Todo";
+import {Todo} from "../../../../../domain/todo/Todo";
 import {TodoVisitor} from "./TodoVisitor";
 
 export class DoneVisitor implements TodoVisitor {

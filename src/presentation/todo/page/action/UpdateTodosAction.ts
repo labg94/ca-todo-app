@@ -1,5 +1,5 @@
 import {TodosPageStore, TodosPageStoreBuilder} from "../store/TodosPageStore";
-import {Todos} from "../../../../../domain/todo/Todos";
+import {Todos} from "../../../../domain/todo/Todos";
 import {TodoCommandAction} from "./TodoCommandAction";
 
 export class UpdateTodosAction implements TodoCommandAction {

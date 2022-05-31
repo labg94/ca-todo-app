@@ -1,4 +1,4 @@
-import {Todos} from "../../../../../domain/todo/Todos";
+import {Todos} from "../../../../domain/todo/Todos";
 
 export interface TodosPageStoreBuilder {
     todos?: Todos

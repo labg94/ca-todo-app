@@ -1,7 +1,7 @@
-import {Todo} from "../../../../../../domain/todo/Todo";
-import {TodoState} from "../../../../../../domain/todo/TodoState";
+import {Todo} from "../../../../../domain/todo/Todo";
+import {TodoState} from "../../../../../domain/todo/TodoState";
 import {TodoVisitor} from "./TodoVisitor";
-import {completeTodo} from "../../../../../../app/todo/complete";
+import {completeTodo} from "../../../../../app/todo/complete";
 
 export class WorkingVisitor implements TodoVisitor {
     actionLabel: string = "Complete";

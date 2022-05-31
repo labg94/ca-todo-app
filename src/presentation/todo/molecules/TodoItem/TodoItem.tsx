@@ -1,4 +1,4 @@
-import {Todo} from "../../../../../domain/todo/Todo";
+import {Todo} from "../../../../domain/todo/Todo";
 import {Button} from "../../atoms/Button";
 import React from "react";
 import Visitors from "./TodoVisitor";

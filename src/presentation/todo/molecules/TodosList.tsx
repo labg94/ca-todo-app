@@ -1,5 +1,5 @@
-import {Todos} from "../../../../domain/todo/Todos";
-import {Todo} from "../../../../domain/todo/Todo";
+import {Todos} from "../../../domain/todo/Todos";
+import {Todo} from "../../../domain/todo/Todo";
 import React from "react";
 import {TodoItem} from "./TodoItem/TodoItem";
 

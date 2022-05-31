@@ -1,4 +1,4 @@
-import {Todo} from "../../../../../../domain/todo/Todo";
+import {Todo} from "../../../../../domain/todo/Todo";
 
 export interface TodoVisitor {
     style: string

@@ -1,6 +1,6 @@
-import {Todo} from "../../../../../../domain/todo/Todo";
-import {TodoState} from "../../../../../../domain/todo/TodoState";
-import {workingOnTodo} from "../../../../../../app/todo/workingOn";
+import {Todo} from "../../../../../domain/todo/Todo";
+import {TodoState} from "../../../../../domain/todo/TodoState";
+import {workingOnTodo} from "../../../../../app/todo/workingOn";
 import {TodoVisitor} from "./TodoVisitor";
 
 export class CreatedVisitor implements TodoVisitor {

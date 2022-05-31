@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import {getAllTodos} from "../../../../app/todo/getAll";
-import {createTodo} from "../../../../app/todo/create";
+import {getAllTodos} from "../../../app/todo/getAll";
+import {createTodo} from "../../../app/todo/create";
 import {todosReducer} from "./reducer/TodosReducer";
 import {TodosPageStore} from "./store/TodosPageStore";
 import {UpdateTodosAction} from "./action/UpdateTodosAction";
 import {AddTaskAction} from "./action/AddTaskAction";
 import {LoadingAction} from "./action/LoadingAction";
 import {LoadedAction} from "./action/LoadedAction";
-import {Todos} from "../../../../domain/todo/Todos";
+import {Todos} from "../../../domain/todo/Todos";
 import {Loader} from "../atoms/Loader";
 import {TodosTemplate, TodosTemplateProps} from "../templates/TodosTemplate";
 
