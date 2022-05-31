@@ -1,6 +1,6 @@
 import {CreateTodo} from "./CreateTodo";
 import {CreateTodoImpl} from "./CreateTodoImpl";
-import {todoRepository} from "../../../infrastructure/repository/todo";
+import Repositories from "../../../infrastructure/repository/todo";
 
 
-export const createTodo: CreateTodo = new CreateTodoImpl(todoRepository)
+export const createTodo: CreateTodo = new CreateTodoImpl(Repositories.saveTodo)

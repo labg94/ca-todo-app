@@ -1,5 +1,5 @@
 import {CompleteTodo} from "./CompleteTodo";
 import {CompleteTodoImpl} from "./CompleteTodoImpl";
-import {todoRepository} from "../../../infrastructure/repository/todo";
+import Repositories from "../../../infrastructure/repository/todo";
 
-export const completeTodo: CompleteTodo = new CompleteTodoImpl(todoRepository)
+export const completeTodo: CompleteTodo = new CompleteTodoImpl(Repositories.complete)

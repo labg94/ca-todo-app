@@ -1,9 +1,12 @@
-import {TodoRepository} from "../../../../domain/todo/TodoRepository";
 import {TodoId} from "../../../../domain/todo/TodoId";
 import {Todos} from "../../../../domain/todo/Todos";
 import {Todo} from "../../../../domain/todo/Todo";
+import {SaveTodoRepository} from "../../../../domain/todo/repository/SaveTodoRepository";
+import {WorkingOnTodoRepository} from "../../../../domain/todo/repository/WorkingOnTodoRepository";
+import {GetTodosRepository} from "../../../../domain/todo/repository/GetTodosRepository";
+import {CompleteTodoRepository} from "../../../../domain/todo/repository/CompleteTodoRepository";
 
-export class MemoryTodo implements TodoRepository {
+export class MemoryTodo implements SaveTodoRepository,WorkingOnTodoRepository,GetTodosRepository ,CompleteTodoRepository{
 
     private todos: Todos = Todos.init()
 

@@ -1,5 +1,13 @@
-import {TodoRepository} from "../../../domain/todo/TodoRepository";
 import {MemoryTodo} from "./memory/MemoryTodo";
 
 
-export const todoRepository: TodoRepository = new MemoryTodo()
+const repository: MemoryTodo = new MemoryTodo();
+
+const repositories = {
+    saveTodo: repository,
+    workingOn: repository,
+    getAll: repository,
+    complete: repository
+}
+
+export default repositories

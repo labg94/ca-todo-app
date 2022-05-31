@@ -1,5 +1,5 @@
 import {WorkingOnTodo} from "./WorkingOnTodo";
 import {WorkingOnTodoImpl} from "./WorkingOnTodoImpl";
-import {todoRepository} from "../../../infrastructure/repository/todo";
+import Repositories from "../../../infrastructure/repository/todo";
 
-export const workingOnTodo: WorkingOnTodo = new WorkingOnTodoImpl(todoRepository)
+export const workingOnTodo: WorkingOnTodo = new WorkingOnTodoImpl(Repositories.workingOn)
