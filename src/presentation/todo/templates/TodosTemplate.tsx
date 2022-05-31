@@ -14,9 +14,9 @@ export interface TodosTemplateProps {
     header: string
 }
 
-export const TodosTemplate = ({todos, updateTodos, task, updateTask, createTask, header}: TodosTemplateProps) => <div>
+export const TodosTemplate = ({todos, updateTodos, task, updateTask, createTask, header}: TodosTemplateProps) => <>
     <Header1>{header}</Header1>
     <TodosList todos={todos} updateTodos={updateTodos}/>
     <TextInput value={task} onChange={updateTask}/>
     <Button onClick={createTask}>Create</Button>
-</div>;
+</>;
