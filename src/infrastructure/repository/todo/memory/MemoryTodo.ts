@@ -6,7 +6,7 @@ import {WorkingOnTodoRepository} from "../../../../domain/todo/repository/Workin
 import {GetTodosRepository} from "../../../../domain/todo/repository/GetTodosRepository";
 import {CompleteTodoRepository} from "../../../../domain/todo/repository/CompleteTodoRepository";
 
-export class MemoryTodo implements SaveTodoRepository,WorkingOnTodoRepository,GetTodosRepository ,CompleteTodoRepository{
+export class MemoryTodo implements SaveTodoRepository, WorkingOnTodoRepository, GetTodosRepository, CompleteTodoRepository {
 
     private todos: Todos = Todos.init()
 
@@ -14,8 +14,9 @@ export class MemoryTodo implements SaveTodoRepository,WorkingOnTodoRepository,Ge
     getAll = async (): Promise<Todos> => this.todos;
 
     save = async (task: string): Promise<Todo> => {
-        this.todos = this.todos.newTodo(task);
-        return this.todos.all()[0];
+        const todo = Todo.of(task);
+        this.todos = this.todos.updateTodos(todo);
+        return todo;
     };
 
     complete = async (todoId: TodoId): Promise<Todo> => this.updateTodos(this.todos.completed(todoId));

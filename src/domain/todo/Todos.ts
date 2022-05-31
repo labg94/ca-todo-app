@@ -16,8 +16,6 @@ export class Todos {
 
     sorted = () => this.todos.sort((a, b) => a.state - b.state)
 
-    newTodo = (task: string): Todos => new Todos([Todo.of(task), ...this.todos]);
-
     workingOn = (todoId: TodoId): Todo => this.updateTodo(todoId, todo => todo.workingOn());
 
     completed = (todoId: TodoId): Todo => this.updateTodo(todoId, todo => todo.complete())
