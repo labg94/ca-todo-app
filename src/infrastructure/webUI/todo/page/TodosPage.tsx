@@ -1,83 +1,46 @@
 import React, {useEffect} from 'react';
 import {getAllTodos} from "../../../../app/todo/getAll";
-import {Todo} from "../../../../domain/todo/Todo";
-import {TodoState} from "../../../../domain/todo/TodoState";
 import {createTodo} from "../../../../app/todo/create";
-import {workingOnTodo} from "../../../../app/todo/workingOn";
-import {completeTodo} from "../../../../app/todo/complete";
 import {todosReducer} from "./reducer/TodosReducer";
 import {TodosPageStore} from "./store/TodosPageStore";
 import {UpdateTodosAction} from "./action/UpdateTodosAction";
 import {AddTaskAction} from "./action/AddTaskAction";
 import {LoadingAction} from "./action/LoadingAction";
 import {LoadedAction} from "./action/LoadedAction";
+import {Todos} from "../../../../domain/todo/Todos";
+import {Loader} from "../atoms/Loader";
+import {TodosTemplate, TodosTemplateProps} from "../templates/TodosTemplate";
+
 
 const TodosPage = () => {
 
+    const header: string = "these are all the TODOS"
     const [{todos, task, loading}, dispatch] = React.useReducer(todosReducer, TodosPageStore.init())
 
+    const updateTodos = (todos: Todos) => dispatch(new UpdateTodosAction(todos))
+
+    const updateTask = (taskInput: string = "") => dispatch(new AddTaskAction(taskInput));
+
+    const loaded = () => dispatch(new LoadedAction());
+
+    const startLoading = () => dispatch(new LoadingAction());
+
+    const createTask = async () => {
+        const value = await createTodo.create(task);
+        updateTodos(todos.updateTodos(value))
+        updateTask()
+    };
+
+    const templateProps: TodosTemplateProps = {createTask, updateTodos, todos, task, updateTask, header}
 
     useEffect(() => {
-        dispatch(new LoadingAction())
-        getAllTodos.getAll()
-            .then(value => dispatch(new UpdateTodosAction(value)))
-            .finally(() => dispatch(new LoadedAction()))
+        startLoading();
+        getAllTodos.getAll().then(updateTodos).finally(loaded)
     }, [])
 
+    if (loading) return <Loader/>
 
-    const pickColor = (todo: Todo) => {
-        if (todo.state == TodoState.CREATED) return "purple"
-        if (todo.state == TodoState.WORKING) return "blue"
-        return "red"
-    }
-
-
-    const renderAll = () => {
-
-        return todos.sorted().map(todo =>
-            (
-                <li key={todo.id.value}
-                    style={{color: pickColor(todo), display: "flex", justifyContent: "space-between"}}>{todo.task}
-
-                    {todo.state === TodoState.CREATED &&
-                        <button onClick={() => {
-                            workingOnTodo.workingOn(todo.id).then(value =>
-                                dispatch(new UpdateTodosAction(todos.updateTodos(value)))
-                            )
-                        }}>Working on</button>}
-                    {todo.state === TodoState.WORKING &&
-                        <button onClick={() => {
-                            completeTodo.complete(todo.id).then(value =>
-                                dispatch(new UpdateTodosAction(todos.updateTodos(value)))
-                            )
-                        }}>Complete</button>}
-
-                </li>))
-
-    }
-
-    if (loading) return <div>Loading todos...</div>
-
-
-    return (
-        <div>
-            <h1>these are all the TODOS</h1>
-            <ul>{renderAll()}</ul>
-
-
-            <input
-                type="text" value={task}
-                onChange={event => {dispatch(new AddTaskAction(event.target.value))}}
-            />
-
-            <button onClick={() => createTodo.create(task).then(value => {
-                dispatch(new UpdateTodosAction(todos.updateTodos(value)))
-                dispatch(new AddTaskAction(""))
-            })}>Create
-            </button>
-
-        </div>
-    );
+    return (<TodosTemplate {...templateProps}/>)
 };
 
 export default TodosPage;
