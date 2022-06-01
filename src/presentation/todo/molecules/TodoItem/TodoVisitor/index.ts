@@ -4,9 +4,14 @@ import {DoneVisitor} from "./DoneVisitor";
 import {workingOnTodo} from "../../../../../app/todo/workingOn";
 import {completeTodo} from "../../../../../app/todo/complete";
 
-const defaultVisitor = new DoneVisitor();
+const createdVisitor = new CreatedVisitor(workingOnTodo)
+const workingVisitor = new WorkingVisitor(completeTodo);
+const doneVisitor = new DoneVisitor();
+
+const defaultVisitor = new CreatedVisitor(workingOnTodo);
+
 const visitors = {
-    all: [new CreatedVisitor(workingOnTodo), new WorkingVisitor(completeTodo), defaultVisitor],
+    all: [createdVisitor, workingVisitor, doneVisitor],
     defaultVisitor
 };
 
