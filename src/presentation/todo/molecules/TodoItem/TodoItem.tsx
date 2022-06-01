@@ -5,7 +5,7 @@ import Visitors from "./TodoVisitor";
 
 export const TodoItem = ({todo, updateTodos}: { todo: Todo, updateTodos: (todos: Todo) => void }) => {
 
-    const visitor = Visitors.all.find(value => value.allowed(todo)) ?? Visitors.defaultVisitor;
+    const visitor = Visitors.all.find(value => value.allowed(todo))!!
 
     const callUpdate = () => visitor.visit(todo).then(updateTodos)
 

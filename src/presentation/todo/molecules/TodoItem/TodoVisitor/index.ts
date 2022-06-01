@@ -8,11 +8,9 @@ const createdVisitor = new CreatedVisitor(workingOnTodo)
 const workingVisitor = new WorkingVisitor(completeTodo);
 const doneVisitor = new DoneVisitor();
 
-const defaultVisitor = new CreatedVisitor(workingOnTodo);
 
 const visitors = {
     all: [createdVisitor, workingVisitor, doneVisitor],
-    defaultVisitor
 };
 
 export default visitors
