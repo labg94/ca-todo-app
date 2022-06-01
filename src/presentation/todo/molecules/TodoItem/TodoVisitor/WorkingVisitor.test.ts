@@ -32,7 +32,7 @@ describe("WorkingVisitor tests", () => {
 
             expect(visitor.allowed(workingOnTodo)).toBeTruthy()
         })
-        describe("and the todo is with Donw Status should return false", () => {
+        describe("and the todo is with Done Status should return false", () => {
             const completeTodo = Todo.of("Dummy").complete();
 
             expect(visitor.allowed(completeTodo)).toBeFalsy()
