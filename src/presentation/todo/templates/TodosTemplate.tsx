@@ -3,7 +3,7 @@ import {TodosList} from "../organisms/TodosList";
 import {TextInput} from "../atoms/TextInput";
 import {Button} from "../atoms/Button";
 import React from "react";
-import {Header1} from "../atoms/Header1";
+import {MainTitle} from "../atoms/MainTitle";
 
 export interface TodosTemplateProps {
     todos: Todos,
@@ -15,7 +15,7 @@ export interface TodosTemplateProps {
 }
 
 export const TodosTemplate = ({todos, updateTodos, task, updateTask, createTask, header}: TodosTemplateProps) => <>
-    <Header1>{header}</Header1>
+    <MainTitle>{header}</MainTitle>
     <TodosList todos={todos} updateTodos={updateTodos}/>
     <TextInput value={task} onChange={updateTask}/>
     <Button onClick={createTask}>Create</Button>
