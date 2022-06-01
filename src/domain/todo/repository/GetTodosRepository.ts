@@ -1,6 +1,5 @@
-import {Todos} from "../Todos";
+import { Todos } from "../Todos";
 
 export interface GetTodosRepository {
-
-    getAll(): Promise<Todos>
+  getAll(): Promise<Todos>;
 }

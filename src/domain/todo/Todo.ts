@@ -1,37 +1,33 @@
-import {TodoId} from "./TodoId";
-import {TodoState} from "./TodoState";
-
+import { TodoId } from "./TodoId";
+import { TodoState } from "./TodoState";
 
 export interface TodoBuilder {
-    id?: TodoId
-    task?: string
-    state?: TodoState
-    creationDate?: Date
+  id?: TodoId;
+  task?: string;
+  state?: TodoState;
+  creationDate?: Date;
 }
 
-
 export class Todo {
+  readonly id: TodoId;
+  readonly task: string;
+  readonly state: TodoState;
+  readonly creationDate: Date;
 
-    readonly id: TodoId
-    readonly task: string
-    readonly state: TodoState
-    readonly creationDate: Date
+  private constructor({ state = TodoState.CREATED, creationDate = new Date(), id = new TodoId(), task }: TodoBuilder) {
+    this.id = id;
+    this.task = task!!;
+    this.state = state;
+    this.creationDate = creationDate;
+  }
 
+  static of = (task: string) => new Todo({ task });
 
-    private constructor({state = TodoState.CREATED, creationDate = new Date(), id = new TodoId(), task}: TodoBuilder) {
-        this.id = id;
-        this.task = task!!;
-        this.state = state;
-        this.creationDate = creationDate;
-    }
+  complete = () => this.copy({ state: TodoState.DONE });
 
-    static of = (task: string) => new Todo({task});
+  workingOn = () => this.copy({ state: TodoState.WORKING });
 
-    complete = () => this.copy({state: TodoState.DONE});
+  sameId = (todoId: TodoId): boolean => this.id.value === todoId.value;
 
-    workingOn = () => this.copy({state: TodoState.WORKING})
-
-    sameId = (todoId: TodoId): boolean => this.id.value === todoId.value;
-
-    private copy = (builder: TodoBuilder) => new Todo({...this, ...builder});
+  private copy = (builder: TodoBuilder) => new Todo({ ...this, ...builder });
 }

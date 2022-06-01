@@ -1,4 +1,5 @@
-
-export enum TodoState{
-    CREATED,WORKING,DONE
+export enum TodoState {
+  CREATED,
+  WORKING,
+  DONE,
 }

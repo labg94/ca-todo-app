@@ -1,16 +1,16 @@
-import {Todos} from "../../../domain/todo/Todos";
-import {Todo} from "../../../domain/todo/Todo";
+import { Todos } from "../../../domain/todo/Todos";
+import { Todo } from "../../../domain/todo/Todo";
 import React from "react";
-import {TodoItem} from "../molecules/TodoItem/TodoItem";
+import { TodoItem } from "../molecules/TodoItem/TodoItem";
 
-export const TodosList = ({todos, updateTodos}: { todos: Todos, updateTodos: (todos: Todos) => void }) => {
+export const TodosList = ({ todos, updateTodos }: { todos: Todos; updateTodos: (todos: Todos) => void }) => {
+  const updateAllTodos = (value: Todo) => updateTodos(todos.updateTodos(value));
 
-    const updateAllTodos = (value: Todo) => updateTodos(todos.updateTodos(value));
-
-    return (<ul>{
-        todos
-            .sorted()
-            .map(todo => <TodoItem key={todo.id.value} todo={todo} updateTodos={updateAllTodos}></TodoItem>)
-    }</ul>)
-
-}
+  return (
+    <ul>
+      {todos.sorted().map((todo) => (
+        <TodoItem key={todo.id.value} todo={todo} updateTodos={updateAllTodos}></TodoItem>
+      ))}
+    </ul>
+  );
+};

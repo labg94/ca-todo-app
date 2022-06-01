@@ -1,55 +1,40 @@
-import {DoneVisitor} from "./DoneVisitor";
-import {Todo} from "../../../../../domain/todo/Todo";
-
+import { DoneVisitor } from "./DoneVisitor";
+import { Todo } from "../../../../../domain/todo/Todo";
 
 describe("DoneVisitor tests", () => {
+  const visitor: DoneVisitor = new DoneVisitor();
 
-    const visitor: DoneVisitor = new DoneVisitor()
+  test("the actionLabel should be ''", () => expect(visitor.actionLabel).toBe(""));
 
-    test("the actionLabel should be ''", () =>
-        expect(visitor.actionLabel).toBe(""));
+  test("the  style should be 'red'", () => expect(visitor.style).toBe("red"));
 
-    test("the  style should be 'red'", () => expect(visitor.style).toBe("red"));
+  describe("when allowed is called", () => {
+    describe("and the todo is with Created Status should return false", () => {
+      const createdTodo = Todo.of("Dummy");
 
+      expect(visitor.allowed(createdTodo)).toBeFalsy();
+    });
 
-    describe("when allowed is called", () => {
+    describe("and the todo is with WorkingOn Status should return false", () => {
+      const workingOnTodo = Todo.of("Dummy").workingOn();
 
-        describe("and the todo is with Created Status should return false", () => {
+      expect(visitor.allowed(workingOnTodo)).toBeFalsy();
+    });
+    describe("and the todo is with Done Status should return true", () => {
+      const completeTodo = Todo.of("Dummy").complete();
 
-            const createdTodo = Todo.of("Dummy");
+      expect(visitor.allowed(completeTodo)).toBeTruthy();
+    });
+  });
 
-            expect(visitor.allowed(createdTodo)).toBeFalsy()
-        })
+  describe("when visit is called", () => {
+    const todo = Todo.of("test");
+    let newTodo: Todo;
 
-        describe("and the todo is with WorkingOn Status should return false", () => {
-            const workingOnTodo = Todo.of("Dummy").workingOn();
+    beforeEach(async () => {
+      newTodo = await visitor.visit(todo);
+    });
 
-            expect(visitor.allowed(workingOnTodo)).toBeFalsy()
-        })
-        describe("and the todo is with Done Status should return true", () => {
-            const completeTodo = Todo.of("Dummy").complete();
-
-            expect(visitor.allowed(completeTodo)).toBeTruthy()
-        })
-
-
-    })
-
-
-    describe("when visit is called", () => {
-
-        const todo = Todo.of("test");
-        let newTodo: Todo;
-
-        beforeEach(async () => {
-            newTodo = await visitor.visit(todo)
-        })
-
-
-        test("should return the same parameter", () =>
-            expect(newTodo).toStrictEqual(todo));
-
-    })
-
-
-})
+    test("should return the same parameter", () => expect(newTodo).toStrictEqual(todo));
+  });
+});

@@ -1,6 +1,5 @@
-import {Todos} from "../../../domain/todo/Todos";
+import { Todos } from "../../../domain/todo/Todos";
 
 export interface GetAllTodos {
-
-    getAll(): Promise<Todos>
+  getAll(): Promise<Todos>;
 }

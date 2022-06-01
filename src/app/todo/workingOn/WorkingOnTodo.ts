@@ -1,9 +1,6 @@
-import {TodoId} from "../../../domain/todo/TodoId";
-import {Todo} from "../../../domain/todo/Todo";
+import { TodoId } from "../../../domain/todo/TodoId";
+import { Todo } from "../../../domain/todo/Todo";
 
 export interface WorkingOnTodo {
-
-    workingOn(todoId: TodoId): Promise<Todo>
-
+  workingOn(todoId: TodoId): Promise<Todo>;
 }
-

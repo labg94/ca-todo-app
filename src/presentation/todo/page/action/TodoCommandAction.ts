@@ -1,6 +1,5 @@
-import {TodosPageStore} from "../store/TodosPageStore";
+import { TodosPageStore } from "../store/TodosPageStore";
 
 export interface TodoCommandAction {
-    execute(store: TodosPageStore): TodosPageStore
+  execute(store: TodosPageStore): TodosPageStore;
 }
-

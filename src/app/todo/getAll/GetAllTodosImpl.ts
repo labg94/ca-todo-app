@@ -1,10 +1,9 @@
-import {GetAllTodos} from "./GetAllTodos";
-import {Todos} from "../../../domain/todo/Todos";
-import {GetTodosRepository} from "../../../domain/todo/repository/GetTodosRepository";
+import { GetAllTodos } from "./GetAllTodos";
+import { Todos } from "../../../domain/todo/Todos";
+import { GetTodosRepository } from "../../../domain/todo/repository/GetTodosRepository";
 
 export class GetAllTodosImpl implements GetAllTodos {
-    constructor(readonly repository: GetTodosRepository) {
-    }
+  constructor(readonly repository: GetTodosRepository) {}
 
-    getAll = async (): Promise<Todos> =>  this.repository.getAll();
+  getAll = async (): Promise<Todos> => this.repository.getAll();
 }

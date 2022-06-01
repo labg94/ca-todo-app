@@ -1,13 +1,12 @@
-import {MemoryTodo} from "./memory/MemoryTodo";
-
+import { MemoryTodo } from "./memory/MemoryTodo";
 
 const repository: MemoryTodo = new MemoryTodo();
 
 const repositories = {
-    saveTodo: repository,
-    workingOn: repository,
-    getAll: repository,
-    complete: repository
-}
+  saveTodo: repository,
+  workingOn: repository,
+  getAll: repository,
+  complete: repository,
+};
 
-export default repositories
+export default repositories;

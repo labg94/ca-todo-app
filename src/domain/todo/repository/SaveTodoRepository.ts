@@ -1,6 +1,5 @@
-import {Todo} from "../Todo";
+import { Todo } from "../Todo";
 
 export interface SaveTodoRepository {
-
-    save(task: string): Promise<Todo>
+  save(task: string): Promise<Todo>;
 }
