@@ -4,8 +4,8 @@ import {TodoVisitor} from "./TodoVisitor";
 import {WorkingOnTodo} from "../../../../../app/todo/workingOn/WorkingOnTodo";
 
 export class CreatedVisitor implements TodoVisitor {
-    actionLabel: string = "Working on";
-    style: string = "purple";
+   readonly actionLabel: string = "Working on";
+   readonly style: string = "purple";
 
     constructor(private readonly workingOnTodo: WorkingOnTodo ) {
     }
