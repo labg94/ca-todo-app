@@ -1,13 +1,15 @@
-import { WorkingOnTodo } from "../../../../../app/todo/workingOn/WorkingOnTodo";
 import { CreatedVisitor } from "./CreatedVisitor";
 import { Todo } from "../../../../../domain/todo/Todo";
-import { TodoId } from "../../../../../domain/todo/TodoId";
+import Mother from "./test/VisitorsMother";
 
 describe("CreatedVisitor tests", () => {
-  const todoReturnedFromUseCase = Todo.of("dummy").workingOn();
-  const workingOn = jest.fn(async (_id: TodoId) => todoReturnedFromUseCase);
-  const useCase: WorkingOnTodo = { workingOn };
-  const visitor: CreatedVisitor = new CreatedVisitor(useCase);
+  const {
+    mocks: { workingOn },
+    stubs: { createTodoReturned },
+    visitors: { createdVisitor },
+  } = Mother;
+
+  const visitor: CreatedVisitor = createdVisitor;
 
   test("the actionLabel should be 'Working on'", () => expect(visitor.actionLabel).toBe("Working on"));
 
@@ -46,6 +48,6 @@ describe("CreatedVisitor tests", () => {
 
     test("the useCase should be called only once", () => expect(workingOn).toHaveBeenCalledTimes(1));
 
-    test("should return the value from the useCase", () => expect(newTodo).toStrictEqual(todoReturnedFromUseCase));
+    test("should return the value from the useCase", () => expect(newTodo).toStrictEqual(createTodoReturned));
   });
 });

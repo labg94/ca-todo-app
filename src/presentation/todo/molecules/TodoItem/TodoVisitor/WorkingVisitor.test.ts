@@ -1,34 +1,33 @@
-import { WorkingVisitor } from "./WorkingVisitor";
 import { Todo } from "../../../../../domain/todo/Todo";
-import { TodoId } from "../../../../../domain/todo/TodoId";
-import { CompleteTodo } from "../../../../../app/todo/complete/CompleteTodo";
+import Mother from "./test/VisitorsMother";
 
 describe("WorkingVisitor tests", () => {
-  const todoReturnedFromUseCase = Todo.of("dummy").complete();
-  const complete = jest.fn(async (_id: TodoId) => todoReturnedFromUseCase);
-  const useCase: CompleteTodo = { complete };
-  const visitor: WorkingVisitor = new WorkingVisitor(useCase);
+  const {
+    mocks: { complete },
+    stubs: { workingTodoReturned },
+    visitors: { workingVisitor },
+  } = Mother;
 
-  test("the actionLabel should be 'Complete'", () => expect(visitor.actionLabel).toBe("Complete"));
+  test("the actionLabel should be 'Complete'", () => expect(workingVisitor.actionLabel).toBe("Complete"));
 
-  test("the  style should be 'blue'", () => expect(visitor.style).toBe("blue"));
+  test("the  style should be 'blue'", () => expect(workingVisitor.style).toBe("blue"));
 
   describe("when allowed is called", () => {
     describe("and the todo is with Created Status should return false", () => {
       const createdTodo = Todo.of("Dummy");
 
-      expect(visitor.allowed(createdTodo)).toBeFalsy();
+      expect(workingVisitor.allowed(createdTodo)).toBeFalsy();
     });
 
     describe("and the todo is with WorkingOn Status should return true", () => {
       const workingOnTodo = Todo.of("Dummy").workingOn();
 
-      expect(visitor.allowed(workingOnTodo)).toBeTruthy();
+      expect(workingVisitor.allowed(workingOnTodo)).toBeTruthy();
     });
     describe("and the todo is with Done Status should return false", () => {
       const completeTodo = Todo.of("Dummy").complete();
 
-      expect(visitor.allowed(completeTodo)).toBeFalsy();
+      expect(workingVisitor.allowed(completeTodo)).toBeFalsy();
     });
   });
 
@@ -38,7 +37,7 @@ describe("WorkingVisitor tests", () => {
 
     beforeEach(async () => {
       jest.clearAllMocks();
-      newTodo = await visitor.visit(todo);
+      newTodo = await workingVisitor.visit(todo);
     });
 
     test("the useCase should be called with the todoId from the todo parameter", () =>
@@ -46,6 +45,6 @@ describe("WorkingVisitor tests", () => {
 
     test("the useCase should be called only once", () => expect(complete).toHaveBeenCalledTimes(1));
 
-    test("should return the value from the useCase", () => expect(newTodo).toStrictEqual(todoReturnedFromUseCase));
+    test("should return the value from the useCase", () => expect(newTodo).toStrictEqual(workingTodoReturned));
   });
 });

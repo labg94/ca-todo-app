@@ -10,10 +10,14 @@ export const TodoItem = ({ todo, updateTodos }: { todo: Todo; updateTodos: (todo
 
   const style: React.CSSProperties = { color: visitor.style, display: "flex", justifyContent: "space-between" };
   return (
-    <li style={style}>
+    <li style={style} data-test={"todo-item"}>
       {todo.task}
 
-      {visitor.actionLabel && <Button onClick={callUpdate}>{visitor.actionLabel}</Button>}
+      {visitor.actionLabel && (
+        <Button data-test={"action-button"} onClick={callUpdate}>
+          {visitor.actionLabel}
+        </Button>
+      )}
     </li>
   );
 };
