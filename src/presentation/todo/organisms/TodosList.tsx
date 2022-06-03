@@ -3,13 +3,18 @@ import { Todo } from "../../../domain/todo/Todo";
 import React from "react";
 import { TodoItem } from "../molecules/TodoItem/TodoItem";
 
-export const TodosList = ({ todos, updateTodos }: { todos: Todos; updateTodos: (todos: Todos) => void }) => {
-  const updateAllTodos = (value: Todo) => updateTodos(todos.updateTodos(value));
+interface TodoListProps {
+  todos: Todos;
+  updateTodos: (todos: Todos) => void;
+}
+
+export const TodosList = ({ todos, updateTodos }: TodoListProps) => {
+  const updateAllTodos = (todo: Todo) => updateTodos(todos.updateTodos(todo));
 
   return (
-    <ul>
+    <ul data-test={"container"}>
       {todos.sorted().map((todo) => (
-        <TodoItem key={todo.id.value} todo={todo} updateTodos={updateAllTodos}></TodoItem>
+        <TodoItem key={todo.id.value} todo={todo} updateTodos={updateAllTodos} />
       ))}
     </ul>
   );
