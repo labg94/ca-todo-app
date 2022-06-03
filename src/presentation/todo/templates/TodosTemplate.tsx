@@ -16,9 +16,11 @@ export interface TodosTemplateProps {
 
 export const TodosTemplate = ({ todos, updateTodos, task, updateTask, createTask, header }: TodosTemplateProps) => (
   <>
-    <MainTitle>{header}</MainTitle>
-    <TodosList todos={todos} updateTodos={updateTodos} />
-    <TextInput value={task} onChange={updateTask} />
-    <Button onClick={createTask}>Create</Button>
+    <MainTitle data-test={"main-title"}>{header}</MainTitle>
+    <TodosList data-test={"todos-list"} todos={todos} updateTodos={updateTodos} />
+    <TextInput data-test={"text-input"} value={task} onChange={updateTask} />
+    <Button data-test={"create-button"} onClick={createTask}>
+      Create
+    </Button>
   </>
 );
