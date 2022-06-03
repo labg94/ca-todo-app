@@ -36,9 +36,9 @@ const TodosPage = () => {
     getAllTodos.getAll().then(updateTodos).finally(loaded);
   }, []);
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader data-test={"loader"} />;
 
-  return <TodosTemplate {...templateProps} />;
+  return <TodosTemplate data-test={"todo-template"} {...templateProps} />;
 };
 
 export default TodosPage;
