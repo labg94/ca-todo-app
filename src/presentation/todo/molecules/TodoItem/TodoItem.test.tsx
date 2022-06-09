@@ -36,7 +36,7 @@ describe("TodoItem test", () => {
       });
 
       test("the text should contain the todo task", () => {
-        expect(itemTag.text()).toContain(todo.task);
+        expect(itemTag.text()).toContain(todo.task.value);
       });
 
       test("the color of the text should be the visitors one", () => {

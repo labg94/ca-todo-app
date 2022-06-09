@@ -46,7 +46,7 @@ describe("MemoryTodo tests", () => {
     });
 
     test("should have the same task the only todo", () => {
-      expect(actual.task).toBe(task);
+      expect(actual.task.value).toBe(task);
     });
   });
   describe("when complete is called", () => {

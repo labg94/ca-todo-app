@@ -1,7 +1,7 @@
 export class TodoId {
   readonly value: string;
 
-  constructor() {
-    this.value = (Math.random() * 1000).toString();
+  constructor(value: string = (Math.random() * 1000).toString()) {
+    this.value = value;
   }
 }

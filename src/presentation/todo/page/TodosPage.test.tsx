@@ -42,7 +42,10 @@ describe("TodosPage tests", () => {
       let templateTag: ShallowWrapper;
       const todos = Todos.init().updateTodos(Todo.of("Dummy"));
       beforeEach(() => {
-        React.useReducer = jest.fn(() => [TodosPageStore.init().copy({ loading: false, todos }), dispatch]);
+        React.useReducer = jest.fn(() => [
+          TodosPageStore.init().copy({ loading: false, todos, task: "Dummy Task" }),
+          dispatch,
+        ]);
 
         const wrapper = shallow(<TodosPage />);
         loaderTag = findByTestAttr(wrapper, "loader");

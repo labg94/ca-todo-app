@@ -1,5 +1,7 @@
-import { Todo } from "./Todo";
+import { Todo, TodoBuilder } from "./Todo";
 import { TodoState } from "./TodoState";
+import { TodoId } from "./TodoId";
+import { Task } from "./Task";
 
 describe("Todo Tests", () => {
   describe("When complete() is called", () => {
@@ -46,6 +48,23 @@ describe("Todo Tests", () => {
       const newTodo = Todo.of("Hello");
 
       expect(todo.sameId(newTodo.id)).toBeFalsy();
+    });
+  });
+
+  describe("when created calling from()", () => {
+    const builder: TodoBuilder = {
+      id: new TodoId("id"),
+      task: new Task("DummyTask"),
+      state: TodoState.DONE,
+      creationDate: new Date(),
+    };
+
+    const todoCreated = Todo.from(builder);
+
+    type TodoKeys = keyof TodoBuilder;
+    const keys = Object.keys(builder) as TodoKeys[];
+    test.each(keys)("the %s should be the same as the builder", (keys) => {
+      expect(todoCreated[keys]).toBe(builder[keys]);
     });
   });
 });
